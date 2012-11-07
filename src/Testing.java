@@ -7,7 +7,13 @@
  */
 public class Testing {
     public static void main (String args[]) {
-        System.out.println("Hello GitHub!");
-        System.out.println("Is it works?!");
+        double begin, end;
+        Integer arr[] = new Integer[10_000_000];
+
+        begin = System.currentTimeMillis();
+        for (int i=0; i<arr.length; i++) arr[i]=i;
+        end = System.currentTimeMillis();
+
+        System.out.println("Время выполнения: " + (end-begin)/1000 + " секунд.");
     }
 }
