@@ -10,7 +10,6 @@ import java.util.*;
 
 public class Testing {
     public static void main (String args[]) {
-        Formatter formatter = new Formatter();
         Calendar calendar = Calendar.getInstance();
         long startTimer, endTimer;
         float spentTime;
@@ -25,12 +24,13 @@ public class Testing {
         }
         endTimer = System.currentTimeMillis();
         spentTime = (endTimer - startTimer) / 1_000;
-        formatter.format("Время выполнения программы составило %.2f сек.", spentTime);
-        System.out.println(formatter);
+        try (Formatter formatter = new Formatter()) {
+            formatter.format("Время выполнения программы составило %.2f сек.", spentTime);
+            formatter.format("\n%tB %<td %<tA %<tT", calendar);
+            System.out.println(formatter);
 
-        formatter = new  Formatter();
-        formatter.format("%tB", calendar);
-        System.out.println(formatter);
-        formatter.close();
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 }
