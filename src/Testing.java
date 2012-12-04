@@ -1,3 +1,5 @@
+import java.util.*;
+
 /**
  * Created with IntelliJ IDEA.
  * User: grandis
@@ -8,15 +10,27 @@
 
 public class Testing {
     public static void main (String args[]) {
-        Package pckj[] = Package.getPackages();
+        Formatter formatter = new Formatter();
+        Calendar calendar = Calendar.getInstance();
+        long startTimer, endTimer;
+        float spentTime;
 
-        for (int i=0; i<pckj.length; i++) {
-            System.out.println(
-                    pckj[i].getName() + "  " +
-                    pckj[i].getImplementationTitle() + "  " +
-                    pckj[i].getImplementationVendor() + "  " +
-                    pckj[i].getImplementationVersion()
-            );
+        startTimer = System.currentTimeMillis();
+        try {
+            System.out.println("Start.");
+            Thread.sleep(3000);
+            System.out.println("The end.");
+        } catch (InterruptedException ex) {
+            System.out.println(ex.getMessage());
         }
+        endTimer = System.currentTimeMillis();
+        spentTime = (endTimer - startTimer) / 1_000;
+        formatter.format("Время выполнения программы составило %.2f сек.", spentTime);
+        System.out.println(formatter);
+
+        formatter = new  Formatter();
+        formatter.format("%tB", calendar);
+        System.out.println(formatter);
+        formatter.close();
     }
 }
